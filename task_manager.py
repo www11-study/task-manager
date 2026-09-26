@@ -25,3 +25,11 @@ class TaskManager:
         task.due_date = due_date
         
         self.save()
+
+    def search_tasks(self,keyword):
+        result = []
+        for task in self.tasks:
+            if keyword in task.title:
+                result.append(task)
+
+        return result

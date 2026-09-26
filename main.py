@@ -105,8 +105,24 @@ def edit_task():
     except IndexError:
         print("任务不存在")
 
-        
+def search_task():
+    keyword = input("请输入搜索关键词:")
+    result = manager.search_tasks(keyword)
 
+    print("=====搜索结果======")
+
+    if not result:
+        print("没有找到相关任务")
+        return
+
+    for i,task in enumerate(result):
+        if task.completed:
+            status = "√"
+        else:
+            status = " "
+
+        print(f"[{status}] {i+1}.{task.title}[{task.priority}] [截止:{task.due_date}]")
+        
 def main():   
     while True:
 
@@ -116,7 +132,8 @@ def main():
         print("3.删除任务")
         print("4.完成任务")
         print("5.修改任务")
-        print("6.退出")
+        print("6.搜索任务")
+        print("7.退出")
 
         choice = input("请选择:")
 
@@ -135,7 +152,10 @@ def main():
         elif choice == "5" :
             edit_task()
 
-        elif choice == "6" :
+        elif choice == "6":
+            search_task()
+
+        elif choice == "7" :
             print("成功退出~")
             manager.save()
             break
