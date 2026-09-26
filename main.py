@@ -122,7 +122,12 @@ def search_task():
             status = " "
 
         print(f"[{status}] {i+1}.{task.title}[{task.priority}] [截止:{task.due_date}]")
-        
+
+def sort_tasks():
+    manager.sort_tasks()
+    manager.save()
+    print("任务已按照优先级排序!")
+
 def main():   
     while True:
 
@@ -133,7 +138,8 @@ def main():
         print("4.完成任务")
         print("5.修改任务")
         print("6.搜索任务")
-        print("7.退出")
+        print("7.排序任务")
+        print("8.退出")
 
         choice = input("请选择:")
 
@@ -155,7 +161,10 @@ def main():
         elif choice == "6":
             search_task()
 
-        elif choice == "7" :
+        elif choice == "7":
+            sort_tasks()
+
+        elif choice == "8" :
             print("成功退出~")
             manager.save()
             break

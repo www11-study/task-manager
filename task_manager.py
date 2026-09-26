@@ -33,3 +33,14 @@ class TaskManager:
                 result.append(task)
 
         return result
+
+    def sort_tasks(self):
+        priority_level = {
+            "高" : 1, 
+            "中" : 2, 
+            "低" : 3
+        }
+
+        self.tasks = sorted(self.tasks,key=lambda task:priority_level[task.priority])
+
+
